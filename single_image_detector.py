@@ -29,15 +29,16 @@ class Detectron_Detector():
         self.predictor = DefaultPredictor(cfg)
 
     #checks input image for correct dimensions 
-    def check_image_dimensions(self, image_np):
-        height, width = image_np.shape[:2]  
+    def check_image_dimensions(self, image):
+        height, width = image.shape[:2]  
         #return same image if correct 
         if width == 2048 and height == 1536:
-            return image_np 
+            return image
         #resize if incorrect
         else:
             print('image size incorrect, resizing it for you...')
             image = cv2.resize(image, (2048, 1536)) 
+            return image)
       
     #run prediction and return numpy array of bounding boxes 
     def predict(self, image_path): 
